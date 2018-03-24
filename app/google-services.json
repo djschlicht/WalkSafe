@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1080078397970",
+    "firebase_url": "https://walksafe-64a9c.firebaseio.com",
+    "project_id": "walksafe-64a9c",
+    "storage_bucket": "walksafe-64a9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080078397970:android:bc5be60a7d33a2e8",
+        "android_client_info": {
+          "package_name": "com.coders.djjs.walksafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080078397970-moju234rjersbd5olcsq2ition0g6s6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.coders.djjs.walksafe",
+            "certificate_hash": "a47a4b2fe96488d4f90d6f702e3eb9086ffb1065"
+          }
+        },
+        {
+          "client_id": "1080078397970-cggdjse5e48259sftromvql1pg9179rp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA08rop4RLS0gNkQ7H2XabnMEmN52rmAho"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080078397970-cggdjse5e48259sftromvql1pg9179rp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
