@@ -20,9 +20,9 @@ import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 
 public class StudentActivity extends AppCompatActivity {
 
-    private TextView textFavorites;
-    private TextView textSchedules;
-    private TextView textMusic;
+    private TextView textHome;
+    private TextView textStatus;
+    private TextView textMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,9 @@ public class StudentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textFavorites = (TextView) findViewById(R.id.text_favorites);
-        textSchedules = (TextView) findViewById(R.id.text_schedules);
-        textMusic = (TextView) findViewById(R.id.text_music);
+        textHome = (TextView) findViewById(R.id.text_favorites);
+        textStatus = (TextView) findViewById(R.id.text_schedules);
+        textMap = (TextView) findViewById(R.id.text_music);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
@@ -44,19 +44,19 @@ public class StudentActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorites:
-                                textFavorites.setVisibility(View.VISIBLE);
-                                textSchedules.setVisibility(View.GONE);
-                                textMusic.setVisibility(View.GONE);
+                                textHome.setVisibility(View.VISIBLE);
+                                textStatus.setVisibility(View.GONE);
+                                textMap.setVisibility(View.GONE);
                                 break;
                             case R.id.action_schedules:
-                                textFavorites.setVisibility(View.GONE);
-                                textSchedules.setVisibility(View.VISIBLE);
-                                textMusic.setVisibility(View.GONE);
+                                textHome.setVisibility(View.GONE);
+                                textStatus.setVisibility(View.VISIBLE);
+                                textMap.setVisibility(View.GONE);
                                 break;
                             case R.id.action_music:
-                                textFavorites.setVisibility(View.GONE);
-                                textSchedules.setVisibility(View.GONE);
-                                textMusic.setVisibility(View.VISIBLE);
+                                textHome.setVisibility(View.GONE);
+                                textStatus.setVisibility(View.GONE);
+                                textMap.setVisibility(View.VISIBLE);
                                 break;
                         }
                         return false;

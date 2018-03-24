@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">WalkSafe</string>
     <string name="title_activity_student">StudentActivity</string>
+    <string name="text_home">Home</string>
+    <string name="text_status">Status</string>
+    <string name="text_map">Map</string>
     <string name="title_activity_ra">RAActivity</string>
 </resources>
