@@ -100,7 +100,7 @@ public class StudentHomeFragment extends Fragment implements View.OnClickListene
 
         // send message in an SMS
 
-        String txt = "WalkSafe: Sarah is requesting help. http://maps.google.com/?q=" + lat + "," + lon;
+        String txt = "WalkSafe (Student): Sarah is requesting help. http://maps.google.com/?q=" + lat + "," + lon;
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage("(650) 555-1212", null, txt, null, null);
 
@@ -110,7 +110,7 @@ public class StudentHomeFragment extends Fragment implements View.OnClickListene
 
         DatabaseReference myRef = database.getReference().child("Requests");
 
-        String requestID = myRef.push().getKey();
+        //String requestID = myRef.push().getKey();
 
         Map<String, Object> userData = new HashMap<>();
         userData.put("hair", "Blonde");
@@ -123,7 +123,8 @@ public class StudentHomeFragment extends Fragment implements View.OnClickListene
         userData.put("requestor", "ss4nd@virginia.edu");
         userData.put("requested", "jy2xj@virginia.edu");
         userData.put("accepted", false);
-        myRef.child(requestID).setValue(userData);
+        //myRef.child(requestID).setValue(userData);
+        myRef.child("-L8R9lQ9W1sNztGVCMxy").setValue(userData);
     }
 
 }

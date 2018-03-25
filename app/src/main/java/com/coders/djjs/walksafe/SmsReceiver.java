@@ -39,9 +39,16 @@ public class SmsReceiver extends BroadcastReceiver {
                 // abortBroadcast();
 
                 Intent i = new Intent();
-                i.setClassName("com.coders.djjs.walksafe", "com.coders.djjs.walksafe.RAActivity");
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
+                // go to RequestActivity if message sent to RA
+                if (message.substring(0,18).equals("WalkSafe (Student)")) {
+                    i.setClassName("com.coders.djjs.walksafe", "com.coders.djjs.walksafe.RequestActivity");
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                } else {
+                    i.setClassName("com.coders.djjs.walksafe", "com.coders.djjs.walksafe.StudentActivity");
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                }
             }
         }
     }
