@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         // Read from the database
 
         // get the email and password as Strings
-        String email = emailEditText.getText().toString().replace(".", ",");
+        final String email = emailEditText.getText().toString().replace(".", ",");
         pass = passEditText.getText().toString();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -75,12 +75,17 @@ public class LoginActivity extends AppCompatActivity {
                 // check to make sure user put in correct password
                 if (pass.equals(actualPass)) {
                     Class dest;
+
                     if (((String) userMap.get("position")).equals("RA")) {
                         dest = RAActivity.class;
                     } else {
                         dest = StudentActivity.class;
                     }
+
+                    // Pass email to other activities
                     Intent intent = new Intent(LoginActivity.this, dest);
+                    startActivity(intent);
+                    intent.putExtra("username", email);
                     startActivity(intent);
                 } else {
                     // Username or password false, display and an error

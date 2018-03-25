@@ -78,7 +78,6 @@ public class MapsActivity extends AppCompatActivity
         } else if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
-
         }
     }
 
@@ -94,6 +93,9 @@ public class MapsActivity extends AppCompatActivity
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
         mMap.animateCamera(cameraUpdate);
+
+
+
     }
 
     @Override
@@ -132,4 +134,3 @@ public class MapsActivity extends AppCompatActivity
     }
 
 }
-
