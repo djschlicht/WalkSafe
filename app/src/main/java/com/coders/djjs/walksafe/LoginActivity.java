@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,16 +36,17 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
-        Map<String, String> userData = new HashMap<>();
+        /*Map<String, String> userData = new HashMap<>();
         userData.put("password", "pass");
         userData.put("position", "RA");
         userData.put("firstName", "Joshua");
         myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
+
         Map<String, String> userData2 = new HashMap<>();
         userData2.put("password", "pass");
         userData2.put("position", "Student");
         userData2.put("firstName", "Sarah");
-        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
+        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);*/
 
         emailEditText = (MaterialEditText) findViewById(R.id.email);
         passEditText = (MaterialEditText) findViewById(R.id.password);

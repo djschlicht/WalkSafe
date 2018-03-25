@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_home_black"
         />
     <item
-        android:id="@+id/menu_search"
+        android:id="@+id/menu_status"
         android:title="@string/text_status"
         android:icon="@drawable/ic_search_black"
         />
     <item
-        android:id="@+id/menu_notifications"
+        android:id="@+id/menu_map"
         android:title="@string/text_map"
         android:icon="@drawable/ic_notifications_black"
         />
