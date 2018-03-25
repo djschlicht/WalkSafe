@@ -1,6 +1,5 @@
 package com.coders.djjs.walksafe;
 
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by Student on 3/25/2018.
@@ -37,7 +35,7 @@ public class StudentStatusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the activity_student_home for this fragment
-        return inflater.inflate(R.layout.fragment_student_status, container, false);
+        return inflater.inflate(R.layout.fragment_student_status_no_requests, container, false);
     }
 
     @Override
@@ -55,11 +53,26 @@ public class StudentStatusFragment extends Fragment {
         }
 
         // initialize views
-        mContent = view.findViewById(R.id.fragment_content);
-        image = (ImageView) view.findViewById(R.id.sitting);
 
-        // set text and background color
-        mContent.setBackgroundColor(mColor);
+        /*
+        Something needs to happen so either these xml files can be accessed individually
+        OR
+        put them all in the same file and sort through them somehow
+         */
+
+        //Walking view
+        //ImageView imageView = view.findViewById(R.id.walking_view);
+        //imageView.setImageResource(R.drawable.walkingiconmd);
+        //mContent = view.findViewById(R.id.fragment_student_status_coming);
+
+        //Waiting view
+        //ImageView imageView = view.findViewById(R.id.sitting_view);
+        //imageView.setImageResource(R.drawable.sitting);
+        //mContent = view.findViewById(R.id.fragment_student_status_waiting);
+
+        //mContent = view.findViewById(R.id.fragment_student_status_no_requests);
+
+
     }
 
     @Override
