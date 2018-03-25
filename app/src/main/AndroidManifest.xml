@@ -25,20 +25,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
-
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
             android:theme="@style/AppTheme.NoActionBar" />
-        android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RAActivity"
             android:label="@string/title_activity_ra"
@@ -66,15 +62,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:label="@string/title_activity_maps" />
 
         <receiver
             android:name=".SmsReceiver"
@@ -84,13 +72,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".RequestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".RequestActivity" />
     </application>
 
 </manifest>

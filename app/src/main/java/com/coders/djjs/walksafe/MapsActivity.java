@@ -29,8 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 /**
- * This demo shows how GMS Location can be used to check for changes to the users location.  The
- * "My Location" button uses GMS Location to set the blue dot representing the users location.
+ * The "My Location" button uses GMS Location to set the blue dot representing the users location.
  * Permission for {@link android.Manifest.permission#ACCESS_FINE_LOCATION} is requested at run
  * time. If the permission has not been granted, the Activity is finished with an error message.
  */
@@ -91,6 +90,8 @@ public class MapsActivity extends AppCompatActivity
                             double lat = (double) user.get("latitude");
                             double lng = (double) user.get("longitude");
                             LatLng latLng = new LatLng(lat, lng);
+
+                            // Add a marker for each RA
                             mMap.addMarker(new MarkerOptions().position(latLng));
                         }
                     }
