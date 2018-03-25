@@ -40,8 +40,7 @@ public class MapsActivity extends AppCompatActivity
         OnMyLocationClickListener,
         LocationSource.OnLocationChangedListener,
         OnMapReadyCallback,
-        ActivityCompat.OnRequestPermissionsResultCallback,
-        ValueEventListener {
+        ActivityCompat.OnRequestPermissionsResultCallback {
 
     /**
      * Request code for location permission request.
@@ -82,14 +81,18 @@ public class MapsActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> val = (Map<String, Object>) dataSnapshot.getValue();
-                for (Map.Entry<String, Object> entry : val.entrySet()) {
-                    Map user = (Map) entry.getValue();
-                    System.out.println(user);
-                    if (user.get("position").equals("RA") && user.get("latitude") != null && user.get("longitude") != null) {
-                        double lat = (double) user.get("latitude");
-                        double lng = (double) user.get("longitude");
-                        LatLng latLng = new LatLng(lat, lng);
-                        mMap.addMarker(new MarkerOptions().position(latLng));
+
+                if (val != null) {
+                    for (Map.Entry<String, Object> entry : val.entrySet()) {
+                        Map user = (Map) entry.getValue();
+
+                        if (user.get("position").equals("RA") && user.get("latitude") != null &&
+                                user.get("longitude") != null) {
+                            double lat = (double) user.get("latitude");
+                            double lng = (double) user.get("longitude");
+                            LatLng latLng = new LatLng(lat, lng);
+                            mMap.addMarker(new MarkerOptions().position(latLng));
+                        }
                     }
                 }
             }
@@ -173,14 +176,4 @@ public class MapsActivity extends AppCompatActivity
         mMap.animateCamera(cameraUpdate);
     }
 
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        Object lat = dataSnapshot.getValue();
-        System.out.println(lat.toString());
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-        System.out.println("The read failed: " + databaseError.getCode());
-    }
 }
