@@ -25,15 +25,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UriActivity">
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="callback"
+                    android:scheme="WalkSafe" />
+
+            </intent-filter>
+        </activity>
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
             android:theme="@style/AppTheme.NoActionBar" />
-        android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RAActivity"
             android:label="@string/title_activity_ra"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <!-- Google Maps API stuff -->
         <meta-data

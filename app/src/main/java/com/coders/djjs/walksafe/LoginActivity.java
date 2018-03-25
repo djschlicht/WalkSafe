@@ -10,6 +10,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -107,6 +108,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void authorize() {
+        UriActivity.authorize();
+    }
+
     public void showAlert() {
         // Username or password false, display and an error
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
@@ -123,5 +128,18 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public void authorizeSafeTrek() {
+        //redirects them to st through haroku
+        String redirectUri = "https://walk-safe1.harokuapp.com/callback";
+        String url = "https://account-sandbox.safetrek.io/authorize?lient_id=" +
+                "m5qXF5ztOdT4cdQtUbZT2grBhF187vw6&scope=openid%20phone%20offline"+
+                "_access&response_type=code&redirect_uri=" + redirectUri;
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        System.out.println(url);
+        startActivity(i);
+
+
     }
 }
