@@ -1,5 +1,6 @@
 package com.coders.djjs.walksafe;
 
+import android.*;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -53,6 +55,10 @@ public class StudentActivity extends AppCompatActivity {
         }
         selectFragment(selectedItem);
 
+        ActivityCompat.requestPermissions(this,
+                new String[]{android.Manifest.permission.SEND_SMS},
+                1);
+
     }
 
     //Method taken directly from the other repo
@@ -80,7 +86,7 @@ public class StudentActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 //frag = new StudentHomeActivity();
-                frag = MenuFragment.newInstance(getString(R.string.text_home), getColorFromRes(R.color.color_home));
+                frag = StudentHomeFragment.newInstance(getString(R.string.text_home), getIntent().getStringExtra("username"));
                 break;
             case R.id.menu_status:
                 //frag = new StudentHomeActivity();
