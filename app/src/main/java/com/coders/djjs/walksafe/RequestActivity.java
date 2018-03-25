@@ -22,7 +22,6 @@ public class RequestActivity extends AppCompatActivity {
     public void accept(View view) {
 
         // set database as accepted
-
         Double lat = 38.033706;
         Double lon = -78.509856;
 

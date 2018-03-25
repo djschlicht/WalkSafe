@@ -15,4 +15,5 @@
     <string name="text_no_ra_response">Currently waiting for an RA...</string>
     <string name="text_no_requests">No current requests for help.</string>
     <string name="text_ra_walking">An RA is coming to assist  you</string>
+    <string name="title_activity_ramap">Map</string>
 </resources>
