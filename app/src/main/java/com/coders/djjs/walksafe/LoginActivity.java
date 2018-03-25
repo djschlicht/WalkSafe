@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,20 +30,20 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference();
 
-        Map<String, String> userData = new HashMap<>();
-        userData.put("password", "pass");
-        userData.put("position", "RA");
-        userData.put("firstName", "Joshua");
-        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
-
-        Map<String, String> userData2 = new HashMap<>();
-        userData2.put("password", "pass");
-        userData2.put("position", "Student");
-        userData2.put("firstName", "Sarah");
-        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
+//        Map<String, String> userData = new HashMap<>();
+//        userData.put("password", "pass");
+//        userData.put("position", "RA");
+//        userData.put("firstName", "Joshua");
+//        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
+//
+//        Map<String, String> userData2 = new HashMap<>();
+//        userData2.put("password", "pass");
+//        userData2.put("position", "Student");
+//        userData2.put("firstName", "Sarah");
+//        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
 
         emailEditText = (MaterialEditText) findViewById(R.id.email);
         passEditText = (MaterialEditText) findViewById(R.id.password);
