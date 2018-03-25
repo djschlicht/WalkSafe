@@ -2,9 +2,11 @@ package com.coders.djjs.walksafe;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 
@@ -22,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     MaterialEditText emailEditText;
     MaterialEditText passEditText;
     private String pass;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +36,31 @@ public class LoginActivity extends AppCompatActivity {
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference myRef = database.getReference();
 
-//        Map<String, String> userData = new HashMap<>();
-//        userData.put("password", "pass");
-//        userData.put("position", "RA");
-//        userData.put("firstName", "Joshua");
-//        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
-//
-//        Map<String, String> userData2 = new HashMap<>();
-//        userData2.put("password", "pass");
-//        userData2.put("position", "Student");
-//        userData2.put("firstName", "Sarah");
-//        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
+        /*Map<String, String> userData = new HashMap<>();
+        userData.put("password", "pass");
+        userData.put("position", "RA");
+        userData.put("firstName", "Joshua");
+        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
+
+        Map<String, String> userData2 = new HashMap<>();
+        userData2.put("password", "pass");
+        userData2.put("position", "Student");
+        userData2.put("firstName", "Sarah");
+        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);*/
 
         emailEditText = (MaterialEditText) findViewById(R.id.email);
         passEditText = (MaterialEditText) findViewById(R.id.password);
+
+        Intent intent = new Intent("com.coders.djjs.walksafe.SmsReceiver");
+        sendBroadcast(intent);
+
     }
 
     public void login(View view) {
         // Read from the database
 
         // get the email and password as Strings
-        final String email = emailEditText.getText().toString().replace(".", ",");
+        email = emailEditText.getText().toString().replace(".", ",");
         pass = passEditText.getText().toString();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -66,7 +73,10 @@ public class LoginActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Log.d("Firebase", "Value is: " + dataSnapshot);
-
+                if (dataSnapshot.getValue() == null) {
+                    showAlert();
+                    return;
+                }
                 // get information about the user
                 Map<String, Object> userMap = (Map<String, Object>) dataSnapshot.getValue();
 
@@ -74,34 +84,17 @@ public class LoginActivity extends AppCompatActivity {
                 // check to make sure user put in correct password
                 if (pass.equals(actualPass)) {
                     Class dest;
-
                     if (((String) userMap.get("position")).equals("RA")) {
                         dest = RAActivity.class;
                     } else {
                         dest = StudentActivity.class;
                     }
-
-                    // Pass email to other activities
                     Intent intent = new Intent(LoginActivity.this, dest);
                     startActivity(intent);
                     intent.putExtra("username", email);
                     startActivity(intent);
                 } else {
-                    // Username or password false, display and an error
-                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
-
-                    dlgAlert.setMessage("Wrong password or username");
-                    dlgAlert.setTitle("Error Message...");
-                    dlgAlert.setPositiveButton("OK", null);
-                    dlgAlert.setCancelable(true);
-                    dlgAlert.create().show();
-
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
+                    showAlert();
                 }
             }
 
@@ -109,22 +102,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Firebase", "Failed to read value.", error.toException());
-                // Username or password false, display and an error
-                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
-
-                dlgAlert.setMessage("Wrong password or username");
-                dlgAlert.setTitle("Error Message...");
-                dlgAlert.setPositiveButton("OK", null);
-                dlgAlert.setCancelable(true);
-                dlgAlert.create().show();
-
-                dlgAlert.setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
+                showAlert();
             }
         });
+    }
+
+    public void showAlert() {
+        // Username or password false, display and an error
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
+
+        dlgAlert.setMessage("Wrong password or username");
+        dlgAlert.setTitle("Error Message...");
+        dlgAlert.setPositiveButton("OK", null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
+
+        dlgAlert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
     }
 }

@@ -19,6 +19,14 @@ import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 /**
  * This demo shows how GMS Location can be used to check for changes to the users location.  The
@@ -54,6 +62,7 @@ public class MapsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -62,10 +71,38 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
         enableMyLocation();
+
+        // Get the database data
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> val = (Map<String, Object>) dataSnapshot.getValue();
+
+                if (val != null) {
+                    for (Map.Entry<String, Object> entry : val.entrySet()) {
+                        Map user = (Map) entry.getValue();
+
+                        if (user.get("position").equals("RA") && user.get("latitude") != null &&
+                                user.get("longitude") != null) {
+                            double lat = (double) user.get("latitude");
+                            double lng = (double) user.get("longitude");
+                            LatLng latLng = new LatLng(lat, lng);
+                            mMap.addMarker(new MarkerOptions().position(latLng));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Database error: " + databaseError.getMessage());
+            }
+        });
+
     }
 
     /**
@@ -138,4 +175,5 @@ public class MapsActivity extends AppCompatActivity
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
         mMap.animateCamera(cameraUpdate);
     }
+
 }
