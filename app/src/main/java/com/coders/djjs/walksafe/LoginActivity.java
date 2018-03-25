@@ -2,12 +2,11 @@ package com.coders.djjs.walksafe;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         userData.put("position", "RA");
         userData.put("firstName", "Joshua");
         myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
+
         Map<String, String> userData2 = new HashMap<>();
         userData2.put("password", "pass");
         userData2.put("position", "Student");
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     // Username or password false, display and an error
-                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
 
                     dlgAlert.setMessage("Wrong password or username");
                     dlgAlert.setTitle("Error Message...");
@@ -98,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                 }
                             });
-
                 }
             }
 
@@ -107,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Failed to read value
                 Log.w("Firebase", "Failed to read value.", error.toException());
                 // Username or password false, display and an error
-                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
 
                 dlgAlert.setMessage("Wrong password or username");
                 dlgAlert.setTitle("Error Message...");
