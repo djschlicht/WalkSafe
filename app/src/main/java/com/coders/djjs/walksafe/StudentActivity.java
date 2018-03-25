@@ -97,7 +97,7 @@ public class StudentActivity extends AppCompatActivity {
                 //frag = (SupportMapFragment)map.getChildFragmentManager().findFragmentById(R.id.map);
                 SupportMapFragment mapFragment = (SupportMapFragment) map.getSupportFragmentManager().findFragmentById(R.id.map);
                 GoogleMap mMap = mapFragment.getMapASync(map);
-                // MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
+                fMenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
                 break;
                 */
         }
