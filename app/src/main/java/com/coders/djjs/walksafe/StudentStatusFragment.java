@@ -32,7 +32,7 @@ public class StudentStatusFragment extends Fragment {
     private View mContent;
     private ImageView image;
 
-    private int statusToUse;
+    public static int statusToUse;
 
     public static Fragment newInstance(String text, int color) {
         Fragment frag = new StudentStatusFragment();
@@ -60,15 +60,13 @@ public class StudentStatusFragment extends Fragment {
                 // get information about the user
                 if(dataSnapshot.getValue() == null) {
                     statusToUse = 0;
-                    System.out.println("printed2");
                     return;
                 }
                 Map<String, Object> userMap = (Map<String, Object>) dataSnapshot.getValue();
 
                 boolean accepted  = (boolean) userMap.get("accepted");
-                if(!accepted) {
+                if(accepted) {
                     statusToUse = R.layout.fragment_student_status_coming;
-                    System.out.println("printed");
                 }
                 else {
                     statusToUse = R.layout.fragment_student_status_waiting;
