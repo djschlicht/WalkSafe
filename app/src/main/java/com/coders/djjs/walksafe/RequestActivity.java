@@ -1,5 +1,6 @@
 package com.coders.djjs.walksafe;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -47,5 +48,8 @@ public class RequestActivity extends AppCompatActivity {
         String txt = "WalkSafe (RA): Help is on the way! The closest RA is currently here: http://maps.google.com/?q=" + lat + "," + lon + ". Look for Joshua.";
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage("+1 (650) 555-1212", null, txt, null, null);
+
+        Intent intent = new Intent(RequestActivity.this, RAMapActivity.class);
+        startActivity(intent);
     }
 }
