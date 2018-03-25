@@ -15,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -29,6 +30,7 @@ public class MapsActivity extends AppCompatActivity
         implements
         OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
+        LocationSource.OnLocationChangedListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -93,9 +95,6 @@ public class MapsActivity extends AppCompatActivity
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
         mMap.animateCamera(cameraUpdate);
-
-
-
     }
 
     @Override
@@ -133,4 +132,10 @@ public class MapsActivity extends AppCompatActivity
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
+        mMap.animateCamera(cameraUpdate);
+    }
 }
