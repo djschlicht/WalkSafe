@@ -53,6 +53,7 @@ public class MenuFragment extends Fragment {
             mText = savedInstanceState.getString(ARG_TEXT);
             mColor = savedInstanceState.getInt(ARG_COLOR);
         }
+        System.out.println(mText);
 
         // initialize views
         mContent = view.findViewById(R.id.fragment_content);

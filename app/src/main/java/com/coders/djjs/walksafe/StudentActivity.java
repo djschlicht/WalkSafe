@@ -90,7 +90,8 @@ public class StudentActivity extends AppCompatActivity {
                 break;
             case R.id.menu_status:
                 //frag = new StudentHomeActivity();
-                frag = MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
+                frag = StudentStatusFragment.newInstance(getResources().getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
+                //MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
                 break;
             case R.id.menu_map:
                 //Ratchet way to do this
@@ -102,7 +103,7 @@ public class StudentActivity extends AppCompatActivity {
                 //frag = (SupportMapFragment)map.getChildFragmentManager().findFragmentById(R.id.map);
                 SupportMapFragment mapFragment = (SupportMapFragment) map.getSupportFragmentManager().findFragmentById(R.id.map);
                 GoogleMap mMap = mapFragment.getMapASync(map);
-                // MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
+                fMenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
                 break;
                 */
         }

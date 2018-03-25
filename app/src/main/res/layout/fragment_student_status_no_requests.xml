@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.Coordinat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_student_status_no_requests"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <TextView
+        android:id="@+id/no_requests"
+        android:layout_width="374dp"
+        android:layout_height="316dp"
+        android:layout_gravity="bottom"
+        android:fontFamily="sans-serif"
+        android:text="@string/text_no_requests"
+        android:textSize="15pt"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="195dp" />
+
+</android.support.design.widget.Coordinat>
