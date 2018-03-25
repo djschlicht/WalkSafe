@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,20 +30,20 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference();
 
-        Map<String, String> userData = new HashMap<>();
-        userData.put("password", "pass");
-        userData.put("position", "RA");
-        userData.put("firstName", "Joshua");
-        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
-
-        Map<String, String> userData2 = new HashMap<>();
-        userData2.put("password", "pass");
-        userData2.put("position", "Student");
-        userData2.put("firstName", "Sarah");
-        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
+//        Map<String, String> userData = new HashMap<>();
+//        userData.put("password", "pass");
+//        userData.put("position", "RA");
+//        userData.put("firstName", "Joshua");
+//        myRef.child("Users").child("jy2xj@virginia,edu").setValue(userData);
+//
+//        Map<String, String> userData2 = new HashMap<>();
+//        userData2.put("password", "pass");
+//        userData2.put("position", "Student");
+//        userData2.put("firstName", "Sarah");
+//        myRef.child("Users").child("ss4nd@virginia,edu").setValue(userData2);
 
         emailEditText = (MaterialEditText) findViewById(R.id.email);
         passEditText = (MaterialEditText) findViewById(R.id.password);
@@ -54,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         // Read from the database
 
         // get the email and password as Strings
-        String email = emailEditText.getText().toString().replace(".", ",");
+        final String email = emailEditText.getText().toString().replace(".", ",");
         pass = passEditText.getText().toString();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -75,12 +74,17 @@ public class LoginActivity extends AppCompatActivity {
                 // check to make sure user put in correct password
                 if (pass.equals(actualPass)) {
                     Class dest;
+
                     if (((String) userMap.get("position")).equals("RA")) {
                         dest = RAActivity.class;
                     } else {
                         dest = StudentActivity.class;
                     }
+
+                    // Pass email to other activities
                     Intent intent = new Intent(LoginActivity.this, dest);
+                    startActivity(intent);
+                    intent.putExtra("username", email);
                     startActivity(intent);
                 } else {
                     // Username or password false, display and an error

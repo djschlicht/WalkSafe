@@ -1,5 +1,7 @@
 package com.coders.djjs.walksafe;
 
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,7 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class RAActivity extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+
+public class RAActivity extends AppCompatActivity implements LocationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,4 +33,35 @@ public class RAActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        // Access the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        HashMap<String, Double> locationData = new HashMap<>();
+        locationData.put("latitude", location.getLatitude());
+        locationData.put("longitude", location.getLongitude());
+        // Get the username from the LoginActivity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String email = extras.getString("username");
+            if (email != null) myRef.child("Users").child(email).setValue(locationData);
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 }
