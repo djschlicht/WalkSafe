@@ -1,6 +1,7 @@
 package com.coders.djjs.walksafe;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class StudentActivity extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
@@ -74,17 +79,26 @@ public class StudentActivity extends AppCompatActivity {
         // init corresponding fragment
         switch (item.getItemId()) {
             case R.id.menu_home:
-                frag = MenuFragment.newInstance(getString(R.string.text_home),
-                        getColorFromRes(R.color.color_home));
+                //frag = new StudentHomeActivity();
+                frag = MenuFragment.newInstance(getString(R.string.text_home), getColorFromRes(R.color.color_home));
                 break;
-            case R.id.menu_notifications:
-                frag = MenuFragment.newInstance(getString(R.string.text_map),
-                        getColorFromRes(R.color.color_notifications));
+            case R.id.menu_status:
+                //frag = new StudentHomeActivity();
+                frag = MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
                 break;
-            case R.id.menu_search:
-                frag = MenuFragment.newInstance(getString(R.string.text_status),
-                        getColorFromRes(R.color.color_search));
+            case R.id.menu_map:
+                //Ratchet way to do this
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
+                /*
+                System.out.println("Entered into map case");
+                MapsActivity map = new MapsActivity();
+                //frag = (SupportMapFragment)map.getChildFragmentManager().findFragmentById(R.id.map);
+                SupportMapFragment mapFragment = (SupportMapFragment) map.getSupportFragmentManager().findFragmentById(R.id.map);
+                GoogleMap mMap = mapFragment.getMapASync(map);
+                // MenuFragment.newInstance(getString(R.string.text_status), getColorFromRes(R.color.color_notifications));
                 break;
+                */
         }
 
         // update selected item
@@ -97,14 +111,16 @@ public class StudentActivity extends AppCompatActivity {
         }
 
         updateToolbarText(item.getTitle());
-
+        System.out.println(frag);
         if (frag != null) {
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.container, frag, frag.getTag());
+            ft.replace(R.id.container, frag, frag.getTag());
             ft.commit();
         }
+
     }
 
+    //Method copied exactly
     private void updateToolbarText(CharSequence text) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -112,6 +128,7 @@ public class StudentActivity extends AppCompatActivity {
         }
     }
 
+    //Method copied exactly
     private int getColorFromRes(@ColorRes int resId) {
         return ContextCompat.getColor(this, resId);
     }
