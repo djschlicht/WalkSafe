@@ -118,7 +118,7 @@ public class StudentActivity extends AppCompatActivity {
         }
 
         updateToolbarText(item.getTitle());
-        System.out.println(frag);
+
         if (frag != null) {
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, frag, frag.getTag());
