@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     MaterialEditText emailEditText;
     MaterialEditText passEditText;
     private String pass;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference();
 
         /*Map<String, String> userData = new HashMap<>();
         userData.put("password", "pass");
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         // Read from the database
 
         // get the email and password as Strings
-        String email = emailEditText.getText().toString().replace(".", ",");
+        email = emailEditText.getText().toString().replace(".", ",");
         pass = passEditText.getText().toString();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -91,9 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     Intent intent = new Intent(LoginActivity.this, dest);
                     startActivity(intent);
+                    intent.putExtra("username", email);
+                    startActivity(intent);
                 } else {
                     showAlert();
-
                 }
             }
 
