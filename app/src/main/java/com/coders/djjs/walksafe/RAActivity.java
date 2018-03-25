@@ -1,6 +1,5 @@
 package com.coders.djjs.walksafe;
 
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -31,10 +30,10 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ra);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +42,7 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
             }
         });
 
-        mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        mBottomNav = findViewById(R.id.navigation);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -64,14 +63,14 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
     }
 
 
-    //Method taken directly from the other repo
+    // Method taken directly from the other repo
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(SELECTED_ITEM, mSelectedItem);
         super.onSaveInstanceState(outState);
     }
 
-    //Method taken directly from the other repo
+    // Method taken directly from the other repo
     public void onBackPressed() {
         MenuItem homeItem = mBottomNav.getMenu().getItem(0);
         if(mSelectedItem != homeItem.getItemId()) {
@@ -82,7 +81,7 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
         }
     }
 
-    //Method taken directly from the other repo
+    // Method taken directly from the other repo
     private void selectFragment(MenuItem item) {
         android.support.v4.app.Fragment frag = null;
         // init corresponding fragment
@@ -131,7 +130,7 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
 
     }
 
-    //Method copied exactly
+    // Method copied exactly
     private void updateToolbarText(CharSequence text) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -139,7 +138,7 @@ public class RAActivity extends AppCompatActivity implements LocationListener {
         }
     }
 
-    //Method copied exactly
+    // Method copied exactly
     private int getColorFromRes(@ColorRes int resId) {
         return ContextCompat.getColor(this, resId);
     }

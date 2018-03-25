@@ -47,6 +47,6 @@ public class RequestActivity extends AppCompatActivity {
         lon = -78.511734;
         String txt = "WalkSafe (RA): Help is on the way! The closest RA is currently here: http://maps.google.com/?q=" + lat + "," + lon + ". Look for Joshua.";
         SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage("(650) 555-1212", null, txt, null, null);
+        sms.sendTextMessage("+1 (650) 555-1212", null, txt, null, null);
     }
 }
